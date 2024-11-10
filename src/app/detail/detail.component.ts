@@ -1,4 +1,4 @@
-import { Component, input, viewChild } from '@angular/core';
+import { Component, effect, input, viewChild } from '@angular/core';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { Data, getData } from '../data';
@@ -12,6 +12,14 @@ import { Data, getData } from '../data';
 })
 export class DetailComponent {
   data = input.required<Data>();
-  detailData = getData(1000);
+  visible = input.required<boolean>();
   accordion = viewChild.required(MatAccordion);
+
+  detailData = getData(1000);
+
+  constructor() {
+    effect(() => {
+      console.log(this.visible(), this.data().position);
+    });
+  }
 }

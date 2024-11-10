@@ -17,6 +17,8 @@ export class ListComponent {
   renderEnd = signal<DOMHighResTimeStamp>(0);
   renderTime = signal<DOMHighResTimeStamp>(0);
 
+  visibleMap = signal<Map<number, boolean>>(new Map<number, boolean>());
+
   constructor() {
     afterNextRender(() => {
       this.renderEnd.set(performance.now());
@@ -28,7 +30,8 @@ export class ListComponent {
     this.renderStart.set(performance.now());
   }
 
-  onVisible(value: number) {
-    console.log('visible' + value);
+  onVisible(value: number, visible: boolean) {
+    // console.log(value, visible);
+    this.visibleMap().set(value, visible);
   }
 }

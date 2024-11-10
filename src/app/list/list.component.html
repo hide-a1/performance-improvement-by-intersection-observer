@@ -4,9 +4,13 @@
   <div
     observeVisibility
     [debounceTime]="300"
-    (visible)="onVisible(data.position)"
+    [threshold]="0"
+    (visible)="onVisible(data.position, $event)"
   >
-    <app-detail [data]="data" />
+    <app-detail
+      [data]="data"
+      [visible]="visibleMap().get(data.position) ?? false"
+    />
   </div>
   }
 </div>

@@ -17,6 +17,7 @@ export class ObserveVisibilityDirective
   implements OnDestroy, OnInit, AfterViewInit
 {
   @Input() debounceTime = 0;
+  @Input() rootMargin = 0;
   @Input() threshold = 1;
 
   visible = output<boolean>();
@@ -50,31 +51,15 @@ export class ObserveVisibilityDirective
     this.subject$.complete();
   }
 
-  private isVisible(element: HTMLElement) {
-    return new Promise((resolve) => {
-      const observer = new IntersectionObserver(([entry]) => {
-        resolve(entry.intersectionRatio === 1);
-        observer.disconnect();
-      });
-
-      observer.observe(element);
-    });
-  }
-
   private createObserver() {
     const options = {
-      rootMargin: '200px',
+      rootMargin: this.rootMargin + 'px',
       threshold: this.threshold,
     };
 
-    const isIntersecting = (entry: IntersectionObserverEntry) =>
-      entry.isIntersecting && entry.intersectionRatio > 0;
-
     this.observer = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
-        if (isIntersecting(entry)) {
-          this.subject$.next({ entry, observer });
-        }
+        this.subject$.next({ entry, observer });
       });
     }, options);
   }
@@ -89,12 +74,10 @@ export class ObserveVisibilityDirective
     this.subject$
       .pipe(delay(this.debounceTime), filter(Boolean))
       .subscribe(async ({ entry, observer }) => {
-        const target = entry.target as HTMLElement;
-        const isStillVisible = await this.isVisible(target);
-
-        if (isStillVisible) {
+        if (entry.isIntersecting && entry.intersectionRatio > 0) {
           this.visible.emit(true);
-          observer.unobserve(target);
+        } else {
+          this.visible.emit(false);
         }
       });
   }

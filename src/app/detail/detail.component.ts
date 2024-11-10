@@ -1,12 +1,13 @@
-import { Component, effect, input, viewChild } from '@angular/core';
+import { Component, input, viewChild } from '@angular/core';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Data, getData } from '../data';
 
 @Component({
   selector: 'app-detail',
   standalone: true,
-  imports: [MatExpansionModule, MatIconModule],
+  imports: [MatExpansionModule, MatIconModule, MatProgressSpinnerModule],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss',
 })
@@ -16,10 +17,4 @@ export class DetailComponent {
   accordion = viewChild.required(MatAccordion);
 
   detailData = getData(1000);
-
-  constructor() {
-    effect(() => {
-      console.log(this.visible(), this.data().position);
-    });
-  }
 }

@@ -3,13 +3,6 @@
     <mat-expansion-panel-header>
       <mat-panel-title>{{ data().position }} </mat-panel-title>
     </mat-expansion-panel-header>
-    <!-- <div style="display: flex; flex-wrap: wrap">
-      @for (data of detailData; track data.position) {
-      <div style="border: 1px solid #e0e0e0">
-        {{ data.position }}
-      </div>
-      }
-    </div> -->
     @if (visible()) {
     <div style="display: flex; flex-wrap: wrap">
       @for (data of detailData; track data.position) {
@@ -17,6 +10,10 @@
         {{ data.position }}
       </div>
       }
+    </div>
+    } @else {
+    <div style="display: grid; height: 500px; width: 100%; place-items: center">
+      <mat-spinner [diameter]="100"></mat-spinner>
     </div>
     }
   </mat-expansion-panel>

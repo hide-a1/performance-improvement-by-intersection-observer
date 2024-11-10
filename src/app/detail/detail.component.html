@@ -1,1 +1,14 @@
-<p>detail works!</p>
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ data().position }} </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div style="display: flex; flex-wrap: wrap">
+      @for (data of detailData; track data.position) {
+      <div style="border: 1px solid #e0e0e0">
+        {{ data.position }}
+      </div>
+      }
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

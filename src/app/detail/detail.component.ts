@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, input, viewChild } from '@angular/core';
+import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { Data, getData } from '../data';
 
 @Component({
   selector: 'app-detail',
   standalone: true,
-  imports: [],
+  imports: [MatExpansionModule, MatIconModule],
   templateUrl: './detail.component.html',
-  styleUrl: './detail.component.scss'
+  styleUrl: './detail.component.scss',
 })
 export class DetailComponent {
-
+  data = input.required<Data>();
+  detailData = getData(1000);
+  accordion = viewChild.required(MatAccordion);
 }

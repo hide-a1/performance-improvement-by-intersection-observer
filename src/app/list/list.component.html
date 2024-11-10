@@ -1,1 +1,12 @@
-<p>list works!</p>
+<p>レンダリング時間: {{ renderTime() }} ms</p>
+<div style="display: grid; gap: 8px; padding: 8px">
+  @for (data of objects; track data.position) {
+  <div
+    observeVisibility
+    [debounceTime]="300"
+    (visible)="onVisible(data.position)"
+  >
+    <app-detail [data]="data" />
+  </div>
+  }
+</div>

@@ -4,11 +4,10 @@ import { DetailComponent } from '../detail/detail.component';
 import { ObserveVisibilityDirective } from '../observe-visibility.directive';
 
 @Component({
-  selector: 'app-list',
-  standalone: true,
-  imports: [DetailComponent, ObserveVisibilityDirective],
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.scss',
+    selector: 'app-list',
+    imports: [DetailComponent, ObserveVisibilityDirective],
+    templateUrl: './list.component.html',
+    styleUrl: './list.component.scss'
 })
 export class ListComponent {
   objects = getData(100);

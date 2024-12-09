@@ -5,11 +5,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Data, getData } from '../data';
 
 @Component({
-  selector: 'app-detail',
-  standalone: true,
-  imports: [MatExpansionModule, MatIconModule, MatProgressSpinnerModule],
-  templateUrl: './detail.component.html',
-  styleUrl: './detail.component.scss',
+    selector: 'app-detail',
+    imports: [MatExpansionModule, MatIconModule, MatProgressSpinnerModule],
+    templateUrl: './detail.component.html',
+    styleUrl: './detail.component.scss'
 })
 export class DetailComponent {
   data = input.required<Data>();

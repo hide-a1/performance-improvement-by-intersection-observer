@@ -3,8 +3,6 @@
   <div
     observeVisibility
     [debounceTime]="300"
-    [rootMargin]="500"
-    [threshold]="0"
     (visible)="onVisible(data.position, $event)"
   >
     <app-detail

@@ -13,7 +13,6 @@ import { delay, filter, Subject } from 'rxjs';
 
 @Directive({
   selector: '[observeVisibility]',
-  standalone: true,
 })
 export class ObserveVisibilityDirective implements OnDestroy, AfterViewInit {
   private element = inject(ElementRef);

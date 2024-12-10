@@ -20,7 +20,7 @@ export class ObserveVisibilityDirective implements OnDestroy, AfterViewInit {
 
   debounceTime = input(0);
   rootMargin = input(0);
-  threshold = input(1);
+  threshold = input(0);
 
   visible = output<boolean>();
 
@@ -28,12 +28,12 @@ export class ObserveVisibilityDirective implements OnDestroy, AfterViewInit {
   private subject$ = new Subject<IntersectionObserverEntry | undefined>();
 
   ngAfterViewInit() {
-    const options = {
+    const options: IntersectionObserverInit = {
       rootMargin: this.rootMargin() + 'px',
       threshold: this.threshold(),
     };
 
-    this.observer = new IntersectionObserver((entries, observer) => {
+    this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         this.subject$.next(entry);
       });
@@ -48,7 +48,7 @@ export class ObserveVisibilityDirective implements OnDestroy, AfterViewInit {
         filter((value) => value !== undefined)
       )
       .subscribe(async (entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0) {
+        if (entry.isIntersecting) {
           this.visible.emit(true);
         } else {
           this.visible.emit(false);

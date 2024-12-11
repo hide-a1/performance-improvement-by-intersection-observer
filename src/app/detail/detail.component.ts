@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Data, getData } from '../data';
+import { getNumbers } from '../data';
 
 @Component({
   selector: 'app-detail',
@@ -11,8 +11,8 @@ import { Data, getData } from '../data';
   styleUrl: './detail.component.scss',
 })
 export class DetailComponent {
-  data = input.required<Data>();
+  index = input.required<number>();
   visible = input.required<boolean>();
 
-  detailData = getData(1000);
+  numbers = getNumbers(1000);
 }

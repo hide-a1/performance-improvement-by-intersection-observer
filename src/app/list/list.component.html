@@ -1,13 +1,13 @@
 <div style="display: grid; gap: 8px; padding: 8px">
-  @for (data of objects; track data.position) {
+  @for (number of numbers; track number) {
   <div
     observeVisibility
     [debounceTime]="300"
-    (visible)="onVisible(data.position, $event)"
+    (visible)="onVisible(number, $event)"
   >
     <app-detail
-      [data]="data"
-      [visible]="visibleMap().get(data.position) ?? false"
+      [index]="number"
+      [visible]="visibleMap().get(number) ?? false"
     />
   </div>
   }

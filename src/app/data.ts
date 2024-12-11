@@ -1,13 +1,7 @@
-export type Data = {
-  position: number;
-};
-
-export const getData: (length: number) => Data[] = (length: number) => {
+export const getNumbers: (length: number) => number[] = (length: number) => {
   return Array.from({
     length,
   }).map((_, i) => {
-    return {
-      position: i + 1,
-    };
+    return i + 1;
   });
 };

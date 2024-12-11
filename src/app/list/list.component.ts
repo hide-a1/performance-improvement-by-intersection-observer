@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { getData } from '../data';
+import { getNumbers } from '../data';
 import { DetailComponent } from '../detail/detail.component';
 import { ObserveVisibilityDirective } from '../observe-visibility.directive';
 
@@ -10,7 +10,7 @@ import { ObserveVisibilityDirective } from '../observe-visibility.directive';
   styleUrl: './list.component.scss',
 })
 export class ListComponent {
-  objects = getData(100);
+  numbers = getNumbers(100);
 
   visibleMap = signal<Map<number, boolean>>(new Map<number, boolean>());
 

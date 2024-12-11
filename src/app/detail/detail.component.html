@@ -1,13 +1,13 @@
 <mat-accordion>
   <mat-expansion-panel [expanded]="true">
     <mat-expansion-panel-header>
-      <mat-panel-title>{{ data().position }} </mat-panel-title>
+      <mat-panel-title>{{ index() }} </mat-panel-title>
     </mat-expansion-panel-header>
     <!-- 対策なし -->
     <!-- <div style="display: flex; flex-wrap: wrap">
-      @for (data of detailData; track data.position) {
+      @for (number of numbers; track number) {
       <div style="border: 1px solid #e0e0e0">
-        {{ data.position }}
+        {{ number }}
       </div>
       }
     </div> -->
@@ -15,9 +15,9 @@
     <!-- viewport に入ったら描画 -->
     @if (visible()) {
     <div style="display: flex; flex-wrap: wrap">
-      @for (data of detailData; track data.position) {
+      @for (number of numbers; track number) {
       <div style="border: 1px solid #e0e0e0">
-        {{ data.position }}
+        {{ number }}
       </div>
       }
     </div>

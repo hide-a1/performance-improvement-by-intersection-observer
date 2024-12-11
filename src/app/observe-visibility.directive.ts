@@ -9,7 +9,7 @@ import {
   output,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { delay, filter, Subject } from 'rxjs';
+import { debounceTime, filter, Subject } from 'rxjs';
 
 @Directive({
   selector: '[observeVisibility]',
@@ -44,7 +44,7 @@ export class ObserveVisibilityDirective implements OnDestroy, AfterViewInit {
     this.subject$
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        delay(this.debounceTime()),
+        debounceTime(this.debounceTime()),
         filter((value) => value !== undefined)
       )
       .subscribe((entry) => {

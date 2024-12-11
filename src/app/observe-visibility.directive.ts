@@ -47,7 +47,7 @@ export class ObserveVisibilityDirective implements OnDestroy, AfterViewInit {
         delay(this.debounceTime()),
         filter((value) => value !== undefined)
       )
-      .subscribe(async (entry) => {
+      .subscribe((entry) => {
         if (entry.isIntersecting) {
           this.visible.emit(true);
         } else {

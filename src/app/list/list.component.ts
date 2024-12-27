@@ -15,6 +15,6 @@ export class ListComponent {
   visibleMap = signal<Map<number, boolean>>(new Map<number, boolean>());
 
   onVisible(value: number, visible: boolean) {
-    this.visibleMap().set(value, visible);
+    this.visibleMap.update((map) => map.set(value, visible));
   }
 }

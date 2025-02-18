@@ -2,7 +2,8 @@
   @for (number of numbers; track number) {
   <div
     observeVisibility
-    [debounceTime]="300"
+    [debounceTime]="50"
+    [rootMargin]="600"
     (visible)="onVisible(number, $event)"
   >
     <app-detail
